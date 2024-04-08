@@ -1,0 +1,151 @@
+CADASTRO
+
+CREATE TABLE pessoa (
+    id_pessoa INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Sexo CHAR(1),
+    CPF VARCHAR(14),
+    data_nascimento DATE,
+    Fk_endereco INT,
+    Numero_casa VARCHAR(10),
+    FOREIGN KEY (Fk_endereco) REFERENCES endereco(id_endereco)
+);
+
+CREATE TABLE telefone (
+    id_telefone INT PRIMARY KEY,
+    Numero VARCHAR(20),
+    Operadora VARCHAR(50),
+    DDD VARCHAR(3),
+    Fk_pessoa INT,
+    FOREIGN KEY (Fk_pessoa) REFERENCES pessoa(id_pessoa)
+);
+
+
+CREATE TABLE endereco (
+    id_endereco INT PRIMARY KEY,
+    Logradouro VARCHAR(200),
+    Estado VARCHAR(50),
+    Cidade VARCHAR(100),
+    Bairro VARCHAR(100),
+    Cep VARCHAR(9),
+    Complemento VARCHAR(200)
+);
+------------------------------------------------------------------------------------------------------------------------------------------------------
+MERCADO
+
+CREATE TABLE produtos (
+    Id_produto INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Quantidade INT,
+    Valor_utilitario DECIMAL(10, 2)
+);
+
+CREATE TABLE vendas (
+    Id_venda INT PRIMARY KEY,
+    Valor_total DECIMAL(10, 2),
+    Data_venda DATE
+);
+
+CREATE TABLE itens_vendidos (
+    Id_item_vendido INT PRIMARY KEY,
+    Fk_id_venda INT,
+    Fk_id_produto INT,
+    Quantidade INT,
+    Valor_venda DECIMAL(10, 2),
+    FOREIGN KEY (Fk_id_venda) REFERENCES vendas(Id_venda),
+    FOREIGN KEY (Fk_id_produto) REFERENCES produtos(Id_produto)
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+ONG
+
+CREATE TABLE usuario (
+    id_usuario INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Endereco VARCHAR(200),
+    Email VARCHAR(100),
+    WhatsApp VARCHAR(20)
+);
+
+
+CREATE TABLE ocorrencia (
+    id_ocorrencia INT PRIMARY KEY,
+    Descricao TEXT,
+    Data DATE,
+    Imagem VARCHAR(200), 
+    Endereco VARCHAR(200),
+    Fk_usuario INT,
+    Fk_ong INT,
+    FOREIGN KEY (Fk_usuario) REFERENCES usuario(id_usuario)
+
+);
+
+CREATE TABLE ong (
+    id_ong INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Endereco VARCHAR(200),
+    Email VARCHAR(100),
+    WhatsApp VARCHAR(20)
+);
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+RIFA
+
+CREATE TABLE Usuario (
+    id_usuario INT PRIMARY KEY,
+    Nome VARCHAR(100)
+);
+
+
+CREATE TABLE Numeros_vendidos (
+    Id_numeros_vendidos INT PRIMARY KEY,
+    Fk_id_usuario INT,
+    Fk_id_rifa INT,
+    Numero_escolhido INT,
+    FOREIGN KEY (Fk_id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (Fk_id_rifa) REFERENCES Rifa(id_rifa)
+);
+
+
+CREATE TABLE Rifa (
+    id_rifa INT PRIMARY KEY,
+    Fk_criador INT,
+    Premio VARCHAR(200),
+    Data DATE,
+    Numeros INT,
+    Descricao TEXT,
+    Valor_numero DECIMAL(10, 2),
+    FOREIGN KEY (Fk_criador) REFERENCES Usuario(id_usuario)
+);
+
+--------------------------------------------------------------------------------------------------------------------------------------
+BARBEARIA
+
+
+CREATE TABLE Cliente (
+    id_Cliente INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Data_Nascimento DATE,
+    WhatsApp VARCHAR(20)
+);
+
+
+CREATE TABLE Servico (
+    id_Servico INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Valor DECIMAL(10, 2),
+    Descricao TEXT
+);
+
+CREATE TABLE Agenda (
+    Id_agenda INT PRIMARY KEY,
+    Data DATE,
+    Dia VARCHAR(10),
+    Hora TIME,
+    Pago BOOLEAN,
+    Fk_id_servico INT,
+    Fk_id_cliente INT,
+    FOREIGN KEY (Fk_id_servico) REFERENCES Servico(id_Servico),
+    FOREIGN KEY (Fk_id_cliente) REFERENCES Cliente(id_Cliente)
+);
