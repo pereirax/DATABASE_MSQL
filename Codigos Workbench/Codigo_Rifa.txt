@@ -1,0 +1,27 @@
+CREATE DATABASE RIFA;
+CREATE TABLE Usuario (
+    id_usuario INT PRIMARY KEY,
+    Nome VARCHAR(100)
+);
+
+
+CREATE TABLE Numeros_vendidos (
+    Id_numeros_vendidos INT PRIMARY KEY,
+    Fk_id_usuario INT,
+    Fk_id_rifa INT,
+    Numero_escolhido INT,
+    FOREIGN KEY (Fk_id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (Fk_id_rifa) REFERENCES Rifa(id_rifa)
+);
+
+
+CREATE TABLE Rifa (
+    id_rifa INT PRIMARY KEY,
+    Fk_criador INT,
+    Premio VARCHAR(200),
+    Data DATE,
+    Numeros INT,
+    Descricao TEXT,
+    Valor_numero DECIMAL(10, 2),
+    FOREIGN KEY (Fk_criador) REFERENCES Usuario(id_usuario)
+);

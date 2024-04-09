@@ -1,0 +1,33 @@
+
+
+CREATE DATABASE CADASTRO;
+CREATE TABLE pessoa (
+    id_pessoa INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Sexo CHAR(1),
+    CPF VARCHAR(14),
+    data_nascimento DATE,
+    Fk_endereco INT,
+    Numero_casa VARCHAR(10),
+    FOREIGN KEY (Fk_endereco) REFERENCES endereco(id_endereco)
+);
+
+CREATE TABLE telefone (
+    id_telefone INT PRIMARY KEY NOT NULL,
+    Numero VARCHAR(20)NOT NULL,
+    Operadora VARCHAR(50)NOT NULL,
+    DDD VARCHAR(3)NOT NULL,
+    Fk_pessoa INT NOT NULL,
+    FOREIGN KEY (Fk_pessoa) REFERENCES pessoa(id_pessoa)
+);
+
+
+CREATE TABLE endereco (
+    id_endereco INT PRIMARY KEY,
+    Logradouro VARCHAR(200),
+    Estado VARCHAR(50),
+    Cidade VARCHAR(100),
+    Bairro VARCHAR(100),
+    Cep VARCHAR(9),
+    Complemento VARCHAR(200)
+);

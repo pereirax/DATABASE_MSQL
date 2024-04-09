@@ -1,0 +1,29 @@
+CREATE DATABASE ONG;
+CREATE TABLE usuario (
+    id_usuario INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Endereco VARCHAR(200),
+    Email VARCHAR(100),
+    WhatsApp VARCHAR(20)
+);
+
+
+CREATE TABLE ocorrencia (
+    id_ocorrencia INT PRIMARY KEY,
+    Descricao TEXT,
+    Data DATE,
+    Imagem VARCHAR(200), 
+    Endereco VARCHAR(200),
+    Fk_usuario INT,
+    Fk_ong INT,
+    FOREIGN KEY (Fk_usuario) REFERENCES usuario(id_usuario)
+
+);
+
+CREATE TABLE ong (
+    id_ong INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Endereco VARCHAR(200),
+    Email VARCHAR(100),
+    WhatsApp VARCHAR(20)
+);
