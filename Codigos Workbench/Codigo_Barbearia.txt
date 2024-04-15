@@ -1,27 +1,27 @@
 CREATE DATABASE BARBEARIA;
 CREATE TABLE Cliente (
-    id_Cliente INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Data_Nascimento DATE,
-    WhatsApp VARCHAR(20)
+    id_Cliente INT PRIMARY KEY  NOT NULL AUTO_INCREMENT, 
+    Nome VARCHAR(100)  NOT NULL,
+    Data_Nascimento DATE  NOT NULL,
+    WhatsApp VARCHAR(20)  NOT NULL,
 );
 
 
 CREATE TABLE Servico (
-    id_Servico INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Valor DECIMAL(10, 2),
-    Descricao TEXT
+    id_Servico INT PRIMARY KEY  NOT NULL AUTO_INCREMENT,
+    Nome VARCHAR(100)  NOT NULL,
+    Valor DECIMAL(10, 2)  NOT NULL,
+    Descricao TEXT  NOT NULL,
 );
 
 CREATE TABLE Agenda (
-    Id_agenda INT PRIMARY KEY,
-    Data DATE,
-    Dia VARCHAR(10),
-    Hora TIME,
-    Pago BOOLEAN,
-    Fk_id_servico INT,
-    Fk_id_cliente INT,
+    Id_agenda INT PRIMARY KEY  NOT NULL AUTO_INCREMENT,
+    Data DATE NOT NULL,
+    Dia VARCHAR(10) NOT NULL,
+    Hora TIME NOT NULL,
+    Pago BOOLEAN NOT NULL,
+    Fk_id_servico INT NOT NULL,
+    Fk_id_cliente INT NOT NULL,
     FOREIGN KEY (Fk_id_servico) REFERENCES Servico(id_Servico),
     FOREIGN KEY (Fk_id_cliente) REFERENCES Cliente(id_Cliente)
 );
