@@ -1,23 +1,23 @@
 CREATE DATABASE MERCADO;
 CREATE TABLE produtos (
-    Id_produto INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Quantidade INT,
-    Valor_utilitario DECIMAL(10, 2)
+    Id_produto INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Quantidade INT NOT NULL,
+    Valor_utilitario DECIMAL(10, 2) NOT NULL,
 );
 
 CREATE TABLE vendas (
-    Id_venda INT PRIMARY KEY,
-    Valor_total DECIMAL(10, 2),
-    Data_venda DATE
+    Id_venda INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Valor_total DECIMAL(10, 2) NOT NULL,
+    Data_venda DATE NOT NULL,
 );
 
 CREATE TABLE itens_vendidos (
-    Id_item_vendido INT PRIMARY KEY,
-    Fk_id_venda INT,
-    Fk_id_produto INT,
-    Quantidade INT,
-    Valor_venda DECIMAL(10, 2),
+    Id_item_vendido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Fk_id_venda INT NOT NULL,
+    Fk_id_produto INT NOT NULL,
+    Quantidade INT NOT NULL,
+    Valor_venda DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (Fk_id_venda) REFERENCES vendas(Id_venda),
     FOREIGN KEY (Fk_id_produto) REFERENCES produtos(Id_produto)
 );
