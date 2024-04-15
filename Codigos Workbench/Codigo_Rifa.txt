@@ -1,27 +1,27 @@
 CREATE DATABASE RIFA;
 CREATE TABLE Usuario (
-    id_usuario INT PRIMARY KEY,
-    Nome VARCHAR(100)
+    id_usuario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
 );
 
 
 CREATE TABLE Numeros_vendidos (
-    Id_numeros_vendidos INT PRIMARY KEY,
-    Fk_id_usuario INT,
-    Fk_id_rifa INT,
-    Numero_escolhido INT,
+    Id_numeros_vendidos INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Fk_id_usuario INT  NOT NULL,
+    Fk_id_rifa INT  NOT NULL,
+    Numero_escolhido INT  NOT NULL,
     FOREIGN KEY (Fk_id_usuario) REFERENCES Usuario(id_usuario),
     FOREIGN KEY (Fk_id_rifa) REFERENCES Rifa(id_rifa)
 );
 
 
 CREATE TABLE Rifa (
-    id_rifa INT PRIMARY KEY,
-    Fk_criador INT,
-    Premio VARCHAR(200),
-    Data DATE,
-    Numeros INT,
-    Descricao TEXT,
-    Valor_numero DECIMAL(10, 2),
+    id_rifa INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Fk_criador INT NOT NULL,
+    Premio VARCHAR(200) NOT NULL,
+    Data DATE NOT NULL,
+    Numeros INT NOT NULL,
+    Descricao TEXT NOT NULL,
+    Valor_numero DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (Fk_criador) REFERENCES Usuario(id_usuario)
 );
