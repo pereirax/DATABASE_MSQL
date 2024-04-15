@@ -1,0 +1,48 @@
+CREATE DATABASE IMOBILIARIA;
+CREATE TABLE Cliente (
+id_Cliente INT NOT NULL PRIMARY KEY
+nome VARCHAR(45) NOT NULL 
+email VARCHAR(45) NOT NULL
+numero DECIMAL NOT NULL
+;)
+
+CREATE TABLE Proprietario (
+id_Proprietario INT NOT NULL PRIMARY KEY
+nome VARCHAR(45) NOT NULL
+email VARCHAR(45) NOT NULL
+telefone DECIMAL NOT NULL
+:)
+
+CREATE TABLE Propriedade (
+id_Propriedade INT NOT NULL PRIMARY KEY 
+titulo VARCHAR(45)NOT NULL
+descricao VARCHAR(200)NOT NULL
+preco FLOAT NOT NULL
+endereco VARCHAR(100)
+cidade VARCHAR(100)
+estado VARCHAR(2) NOT NULL
+cep DECIMAL NOT NULL
+num_quartos DECIMAL
+num_banheiros DECIMAL
+area VARCHAR(45)
+fk_propriedade INT NOT NULL
+FOREIGN KEY (Fk_id_propriedade) REFERENCES propriedade(id_propriedade)
+;)
+
+CREATE TABLE Comentarios(
+classificacao VARCHAR(45)NOT NULL
+comentario VARCHAR(100) NOT NULL
+fk_propriedade INT NOT NULL
+fk_cliente INT NOT NULL
+FOREIGN KEY (Fk_id_Propriedade) REFERENCES Propriedade(id_Propriedade),
+FOREIGN KEY (Fk_id_Cliente) REFERENCES Rifa(id_Cliente)
+;)
+
+CREATE TABLE Agente(
+Id_Agente INT NOT NULL PRIMARY KEY,
+nome VARCHAR(45) NOT NULL,
+email VARCHAR(100) NOT NULL,
+telefone DECIMAL NOT NULL,
+fk_Propriedade INT NOT NULL,
+FOREIGN KEY (Fk_propriedade) REFERENCES propriedade(id_propriedade)
+);
