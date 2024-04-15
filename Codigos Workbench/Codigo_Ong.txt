@@ -1,29 +1,29 @@
 CREATE DATABASE ONG;
 CREATE TABLE usuario (
-    id_usuario INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Endereco VARCHAR(200),
-    Email VARCHAR(100),
-    WhatsApp VARCHAR(20)
+    id_usuario INT PRIMARY KEY  NOT NULL AUTO_INCREMENT,
+    Nome VARCHAR(100), NOT NULL, 
+    Endereco VARCHAR(200), NOT NULL,
+    Email VARCHAR(100), NOT NULL,
+    WhatsApp VARCHAR(20)  NOT NULL,
 );
 
 
 CREATE TABLE ocorrencia (
-    id_ocorrencia INT PRIMARY KEY,
-    Descricao TEXT,
-    Data DATE,
-    Imagem VARCHAR(200), 
-    Endereco VARCHAR(200),
-    Fk_usuario INT,
-    Fk_ong INT,
+    id_ocorrencia INT PRIMARY KEY NOT NULL AUTO INCREMENT,
+    Descricao TEXT, NOT NULL,
+    Data DATE, NOT NULL,
+    Imagem VARCHAR(200), NOT NULL, 
+    Endereco VARCHAR(200), NOT NULL,
+    Fk_usuario INT, NOT NULL,
+    Fk_ong INT, NOT NULL,
     FOREIGN KEY (Fk_usuario) REFERENCES usuario(id_usuario)
 
 );
 
 CREATE TABLE ong (
-    id_ong INT PRIMARY KEY,
-    Nome VARCHAR(100),
-    Endereco VARCHAR(200),
-    Email VARCHAR(100),
-    WhatsApp VARCHAR(20)
+    id_ong INT PRIMARY KEY NOT NULL AUTO INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Endereco VARCHAR(200) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    WhatsApp VARCHAR(20) NOT NULL,
 );
